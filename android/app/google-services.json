@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1083159936150",
+    "project_id": "onlyfoods-1efe1",
+    "storage_bucket": "onlyfoods-1efe1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1083159936150:android:a55e8af80fd8555b1fd6b7",
+        "android_client_info": {
+          "package_name": "com.example.onlyfoods"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAS6_p931WFiHZPGmbELpB8v_GvPCpIKmY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
