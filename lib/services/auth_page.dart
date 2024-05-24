@@ -138,6 +138,7 @@ class AuthService {
         'username': username, // initial user
         'birthdate': bday,
         'fcolor': fcolor,
+        'email': email
         //add more fields
       });
     } catch (e) {

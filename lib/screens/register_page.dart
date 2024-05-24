@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:onlyfoods/screens/home_page.dart';
+import 'package:onlyfoods/screens/homepage/home_page.dart';
 import 'package:onlyfoods/services/auth_page.dart';
 
 class Register extends StatefulWidget {

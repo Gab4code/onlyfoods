@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:onlyfoods/screens/home_page.dart';
+import 'package:onlyfoods/screens/homepage/home_page.dart';
 import 'package:onlyfoods/screens/register_page.dart';
 import 'package:onlyfoods/services/auth_page.dart';
 
