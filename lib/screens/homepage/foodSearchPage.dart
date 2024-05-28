@@ -64,16 +64,8 @@ class _foodPageState extends State<foodPage> {
                       style: TextStyle(fontFamily: 'Poppins'),
                     ),
                     decoration: BoxDecoration(
-                      color: Color(0xFFDF0000),
+                      color: Color.fromARGB(255, 155, 2, 2),
                     ),
-                  ),
-                  ListTile(
-                    leading: Icon(Icons.person),
-                    title:
-                        Text('Profile', style: TextStyle(fontFamily: 'Poppins')),
-                    onTap: () {
-                      // Handle profile tap here
-                    },
                   ),
                   ListTile(
                     leading: Icon(Icons.logout),
