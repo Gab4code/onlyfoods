@@ -140,7 +140,7 @@ class _FoodGridViewState extends State<FoodGridView> {
           spacing: 8.0,
           children: selectedFilters
               .map((filter) => Chip(
-                    backgroundColor: Color(0xFFDF0000),
+                    backgroundColor: Color.fromARGB(255, 228, 90, 90), // filter colors 
                     label: Text(filter, style: TextStyle(color: Colors.white),),
                     onDeleted: () {
                       setState(() {
@@ -199,26 +199,34 @@ class SearchBar extends StatefulWidget {
 class _SearchBarState extends State<SearchBar> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(16),
-      child: TextField(
-        onChanged: widget.onQueryChanged,
-        decoration: InputDecoration(
-          prefixIcon: Icon(Icons.search, color: Color.fromARGB(255, 155, 2, 2)),
-          hintText: 'What are you craving?',
-          hintStyle: TextStyle(
-            color: Colors.grey.withOpacity(0.5),
-            fontStyle: FontStyle.italic,
-          ),
-          filled: true,
-          fillColor: Colors.white.withOpacity(0.5),
-          contentPadding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 20.0),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(25.0)),
-            borderSide: BorderSide.none,
+    return Row(
+      children: [
+        Expanded(
+          child: Material(
+            elevation: 5.0,
+            borderRadius: BorderRadius.circular(25.0),
+            shadowColor: Colors.grey.withOpacity(0.5),
+            child: TextField(
+              onChanged: widget.onQueryChanged,
+              decoration: InputDecoration(
+                prefixIcon: Icon(Icons.search, color: Color.fromARGB(255, 155, 2, 2)),
+                hintText: 'What are you craving?',
+                hintStyle: TextStyle(
+                  color: Colors.grey.withOpacity(0.5),
+                  fontStyle: FontStyle.italic,
+                ),
+                filled: true,
+                fillColor: Colors.white.withOpacity(0.5),
+                contentPadding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 20.0),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(25.0)),
+                  borderSide: BorderSide.none,
+                ),
+              ),
+            ),
           ),
         ),
-      ),
+      ],
     );
   }
 }

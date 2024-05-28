@@ -11,9 +11,9 @@ class FoodDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(name, style: TextStyle(color: Color(0xFF01a990), fontFamily: 'Poppins')),
+        title: Text(name, style: TextStyle(color: Color.fromARGB(255, 155, 2, 2), fontFamily: 'Poppins')),
         backgroundColor: Colors.white,
-        iconTheme: IconThemeData(color: Color(0xFF01a990)),
+        iconTheme: IconThemeData(color: Color.fromARGB(255, 155, 2, 2)),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
