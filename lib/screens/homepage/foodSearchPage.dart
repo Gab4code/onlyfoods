@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:onlyfoods/screens/homepage/food_grid_view.dart';
 import 'package:onlyfoods/screens/homepage/bookmark.dart';
+import 'package:onlyfoods/services/auth_page.dart';
+import 'package:onlyfoods/services/wrapper.dart';
 
 class foodPage extends StatefulWidget {
   const foodPage({Key? key}) : super(key: key);
@@ -13,6 +15,7 @@ class foodPage extends StatefulWidget {
 
 class _foodPageState extends State<foodPage> {
   final currentUser = FirebaseAuth.instance.currentUser!;
+  final AuthService _auth = AuthService();
 
 
   int _selectedIndex = 0;
@@ -28,7 +31,7 @@ class _foodPageState extends State<foodPage> {
       appBar: AppBar(
         title: Text(
           'OnlyFoods',
-          style: TextStyle(color: Color.fromARGB(255, 155, 2, 2), fontFamily: 'Poppins'),
+          style: TextStyle(color: Color.fromARGB(255, 155, 2, 2), fontFamily: 'Poppins', fontWeight: FontWeight.bold),
         ),
         backgroundColor: Colors.white,
         iconTheme: IconThemeData(color: Color.fromARGB(255, 155, 2, 2)),
@@ -68,8 +71,11 @@ class _foodPageState extends State<foodPage> {
                     leading: Icon(Icons.logout),
                     title:
                         Text('Logout', style: TextStyle(fontFamily: 'Poppins')),
-                    onTap: () {
+                    onTap: () async {
                       // Handle logout tap here
+                       await _auth.signOut();
+                       Navigator.push(context, MaterialPageRoute(builder: (context) => Wrapper()));
+                       
                     },
                   ),
                 ],
@@ -91,7 +97,7 @@ class _foodPageState extends State<foodPage> {
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Color(0xFFDF0000),
+        selectedItemColor: Color.fromARGB(255, 155, 2, 2),
         unselectedItemColor: Colors.grey,
         backgroundColor: Colors.white,
         onTap: (index) {
@@ -104,7 +110,7 @@ class _foodPageState extends State<foodPage> {
         type: BottomNavigationBarType.fixed,
         showSelectedLabels: true,
         showUnselectedLabels: true,
-        selectedIconTheme: IconThemeData(color: Color(0xFFDF0000)),
+        selectedIconTheme: IconThemeData(color: Color.fromARGB(255, 155, 2, 2)),
         unselectedIconTheme: IconThemeData(color: Colors.grey),
       ),
     );

@@ -61,11 +61,10 @@ class BookmarkedFoods extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       IconButton(
-<<<<<<< Updated upstream
-                        icon: Icon(Icons.delete, color: Color(0xFFDF0000)),
-=======
+
+
                         icon: Icon(Icons.delete, color: Color.fromARGB(255, 155, 2, 2)),
->>>>>>> Stashed changes
+            
                         onPressed: () {
                           showDialog(
                             context: context,
