@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:onlyfoods/screens/homepage/food_grid_view.dart';
 import 'package:onlyfoods/screens/homepage/bookmark.dart';
+import 'package:onlyfoods/services/auth_page.dart';
+import 'package:onlyfoods/services/wrapper.dart';
 
 class foodPage extends StatefulWidget {
   const foodPage({Key? key}) : super(key: key);
@@ -13,6 +15,7 @@ class foodPage extends StatefulWidget {
 
 class _foodPageState extends State<foodPage> {
   final currentUser = FirebaseAuth.instance.currentUser!;
+  final AuthService _auth = AuthService();
 
 
   int _selectedIndex = 0;
@@ -76,8 +79,11 @@ class _foodPageState extends State<foodPage> {
                     leading: Icon(Icons.logout),
                     title:
                         Text('Logout', style: TextStyle(fontFamily: 'Poppins')),
-                    onTap: () {
+                    onTap: () async {
                       // Handle logout tap here
+                       await _auth.signOut();
+                       Navigator.push(context, MaterialPageRoute(builder: (context) => Wrapper()));
+                       
                     },
                   ),
                 ],
