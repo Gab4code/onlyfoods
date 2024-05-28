@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:onlyfoods/screens/homepage/food_details.dart';
 
 class BookmarkedFoods extends StatelessWidget {
   @override
@@ -116,23 +117,23 @@ class BookmarkedFoods extends StatelessWidget {
   }
 }
 
-class FoodDetailPage extends StatelessWidget {
-  final String name;
-  final String price;
-  final String image;
-  // Add other necessary fields
+// class FoodDetailPage extends StatelessWidget {
+//   final String name;
+//   final String price;
+//   final String image;
+//   // Add other necessary fields
 
-  const FoodDetailPage({required this.name, required this.price, required this.image});
+//   const FoodDetailPage({required this.name, required this.price, required this.image});
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(name),
-      ),
-      body: Center(
-        child: Text('Food details go here'),
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text(name),
+//       ),
+//       body: Center(
+//         child: Text('Food details go here'),
+//       ),
+//     );
+//   }
+// }
