@@ -49,9 +49,9 @@ class BookmarkedFoods extends StatelessWidget {
                 );
               },
               child: Container(
-                margin: EdgeInsets.all(8.0),
+                margin: EdgeInsets.only(left: 15.0, right: 15.0, bottom: 10.0, top: 10.0),
                 decoration: BoxDecoration(
-                  border: Border.all(color: Colors.grey, width: 1.0),
+                  border: Border.all(color: Color.fromARGB(255, 155, 2, 2), width: 1.0),
                   borderRadius: BorderRadius.circular(8.0),
                 ),
                 child: ListTile(
@@ -61,7 +61,10 @@ class BookmarkedFoods extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       IconButton(
-                        icon: Icon(Icons.delete, color: Color(0xFFDF0000)),
+
+
+                        icon: Icon(Icons.delete, color: Color.fromARGB(255, 155, 2, 2)),
+            
                         onPressed: () {
                           showDialog(
                             context: context,
