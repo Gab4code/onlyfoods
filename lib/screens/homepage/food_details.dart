@@ -24,7 +24,7 @@ class FoodDetailPage extends StatelessWidget {
               borderRadius: BorderRadius.circular(15),
               child: 
 
-              Image.asset(
+              Image.network(
                 image,
                 fit: BoxFit.cover,
                 height: 200,
