@@ -149,7 +149,6 @@ class AuthService {
     }
   }
 
-  // check if a user with given email, username, fcolor, bday, and education exists
 
   // sign out
   Future signOut() async {
