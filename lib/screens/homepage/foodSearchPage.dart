@@ -31,10 +31,10 @@ class _foodPageState extends State<foodPage> {
       appBar: AppBar(
         title: Text(
           'OnlyFoods',
-          style: TextStyle(color: Color(0xFF01a990), fontFamily: 'Poppins'),
+          style: TextStyle(color: Color.fromARGB(255, 155, 2, 2), fontFamily: 'Poppins'),
         ),
         backgroundColor: Colors.white,
-        iconTheme: IconThemeData(color: Color(0xFF01a990)),
+        iconTheme: IconThemeData(color: Color.fromARGB(255, 155, 2, 2)),
       ),
       drawer: Drawer(
         child: StreamBuilder<DocumentSnapshot>(
@@ -64,7 +64,7 @@ class _foodPageState extends State<foodPage> {
                       style: TextStyle(fontFamily: 'Poppins'),
                     ),
                     decoration: BoxDecoration(
-                      color: Color(0xFF01a990),
+                      color: Color(0xFFDF0000),
                     ),
                   ),
                   ListTile(
@@ -105,7 +105,7 @@ class _foodPageState extends State<foodPage> {
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Color(0xFF01a990),
+        selectedItemColor: Color(0xFFDF0000),
         unselectedItemColor: Colors.grey,
         backgroundColor: Colors.white,
         onTap: (index) {
@@ -118,7 +118,7 @@ class _foodPageState extends State<foodPage> {
         type: BottomNavigationBarType.fixed,
         showSelectedLabels: true,
         showUnselectedLabels: true,
-        selectedIconTheme: IconThemeData(color: Color(0xFF01a990)),
+        selectedIconTheme: IconThemeData(color: Color(0xFFDF0000)),
         unselectedIconTheme: IconThemeData(color: Colors.grey),
       ),
     );

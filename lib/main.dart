@@ -1,8 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:onlyfoods/screens/homepage/home_page.dart';
 import 'package:onlyfoods/screens/login_page.dart';
 import 'package:onlyfoods/screens/register_page.dart';
 import 'package:onlyfoods/services/wrapper.dart';
+import 'screens/homepage/foodSearchPage.dart';
 // import 'screens/onboarding.dart';
 
 Future<void> main() async {

@@ -109,7 +109,7 @@ class _FoodGridViewState extends State<FoodGridView> {
                 ),
               ),
               IconButton(
-                icon: Icon(Icons.filter_list, color: Color(0xFF01a990)),
+                icon: Icon(Icons.filter_list, color: Color.fromARGB(255, 155, 2, 2)),
                 onPressed: () async {
                   final filters = await FilterOptions.show(context, selectedFilters);
                   if (filters != null) {
@@ -130,7 +130,7 @@ class _FoodGridViewState extends State<FoodGridView> {
                 fontWeight: FontWeight.bold,
                 fontSize: 20,
                 fontFamily: 'Poppins',
-                color: Color(0xFF01a990),
+                color: Color.fromARGB(255, 155, 2, 2),
               ),
             ),
            ),
@@ -140,7 +140,7 @@ class _FoodGridViewState extends State<FoodGridView> {
           spacing: 8.0,
           children: selectedFilters
               .map((filter) => Chip(
-                    backgroundColor: Color(0xFF01a990),
+                    backgroundColor: Color(0xFFDF0000),
                     label: Text(filter, style: TextStyle(color: Colors.white),),
                     onDeleted: () {
                       setState(() {
@@ -204,7 +204,7 @@ class _SearchBarState extends State<SearchBar> {
       child: TextField(
         onChanged: widget.onQueryChanged,
         decoration: InputDecoration(
-          prefixIcon: Icon(Icons.search, color: Color(0xFF01a990)),
+          prefixIcon: Icon(Icons.search, color: Color.fromARGB(255, 155, 2, 2)),
           hintText: 'What are you craving?',
           hintStyle: TextStyle(
             color: Colors.grey.withOpacity(0.5),
