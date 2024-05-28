@@ -94,7 +94,7 @@ class _FoodItemState extends State<FoodItem> {
       onTap: widget.onTap,
       child: Container(
         decoration: BoxDecoration(
-          color: Color(0xFF01a990),
+          color: Color.fromARGB(255, 119, 19, 19),
           borderRadius: BorderRadius.circular(15),
         ),
         child: Column(
@@ -134,7 +134,7 @@ class _FoodItemState extends State<FoodItem> {
                     onTap: toggleBookmark,
                     child: Icon(
                       isBookmarked ? Icons.favorite : Icons.favorite_border,
-                      color: Colors.red,
+                      color: Color(0xFFDF0000),
                     ),
                   ),
                 ],
