@@ -8,9 +8,13 @@ class FoodItem extends StatefulWidget {
   final String name;
   final String image;
   final String price;
+  final String vendor;
+  final GeoPoint location;
+  final String address;
   final VoidCallback onTap;
+  
 
-  FoodItem({required this.name, required this.image, required this.price, required this.onTap});
+  FoodItem({required this.name, required this.image, required this.price, required this.onTap, required this.vendor, required this.location, required this.address});
 
   @override
   _FoodItemState createState() => _FoodItemState();
@@ -71,7 +75,10 @@ class _FoodItemState extends State<FoodItem> {
           {
             'name':widget.name,
             'image':widget.image,
-            'price':widget.price
+            'price':widget.price,
+            'vendor':widget.vendor,
+            'location':widget.location
+            
           }
         );
         batch.update(bookmarkDest, {
