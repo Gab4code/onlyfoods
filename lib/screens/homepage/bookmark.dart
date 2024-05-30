@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:onlyfoods/screens/homepage/food_details.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class BookmarkedFoods extends StatelessWidget {
   @override
@@ -48,10 +49,7 @@ class BookmarkedFoods extends StatelessWidget {
                       price: price,
                       image: image,
                       vendor: vendor,
-                      location: LatLng(
-                        location.latitude,
-                        location.longitude
-                      ),
+                      location: LatLng(location.latitude, location.longitude),
                       address: address,
                       // add other necessary fields
                     ),
@@ -59,47 +57,99 @@ class BookmarkedFoods extends StatelessWidget {
                 );
               },
               child: Container(
-                margin: EdgeInsets.only(left: 15.0, right: 15.0, bottom: 10.0, top: 10.0),
+                margin: EdgeInsets.only(
+                    left: 15.0, right: 15.0, bottom: 10.0, top: 10.0),
                 decoration: BoxDecoration(
-                  border: Border.all(color: Color.fromARGB(255, 155, 2, 2), width: 1.0),
+                  border: Border.all(
+                      color: Color.fromARGB(255, 155, 2, 2), width: 1.0),
                   borderRadius: BorderRadius.circular(8.0),
                 ),
                 child: ListTile(
-                  title: Text(name),
-                  subtitle: Text(price),
+                  title: Text(
+                    name,
+                    style: GoogleFonts.poppins(
+                      textStyle: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
+                  subtitle: Text(price,
+                  style: GoogleFonts.poppins(
+                textStyle: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w600,
+                  color: const Color.fromARGB(255, 79, 78, 78),
+                ),
+              ),),
                   trailing: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       IconButton(
-
-
-                        icon: Icon(Icons.delete, color: Color.fromARGB(255, 155, 2, 2)),
-            
+                        icon: Icon(Icons.delete,
+                            color: Color.fromARGB(255, 155, 2, 2)),
                         onPressed: () {
                           showDialog(
                             context: context,
                             builder: (context) => AlertDialog(
-                              title: Text('Confirm Deletion'),
-                              content: Text('Are you sure you want to delete this bookmark?'),
+                              title: Text(
+                                'Confirm Deletion',
+                                style: GoogleFonts.poppins(
+                                  textStyle: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ),
+                              content: Text(
+                                'Are you sure you want to delete this bookmark?',
+                                style: GoogleFonts.poppins(
+                                  textStyle: TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w300,
+                                  ),
+                                ),
+                              ),
                               actions: [
                                 TextButton(
-                                  child: Text('Cancel'),
+                                  child: Text(
+                                    'Cancel',
+                                    style: GoogleFonts.poppins(
+                                      textStyle: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.normal,
+                                        color: Color.fromARGB(255, 155, 2, 2),
+                                      ),
+                                    ),
+                                  ),
                                   onPressed: () {
                                     Navigator.of(context).pop();
                                   },
                                 ),
                                 TextButton(
-                                  child: Text('Delete'),
+                                  child: Text(
+                                    'Delete',
+                                    style: GoogleFonts.poppins(
+                                      textStyle: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.normal,
+                                        color: Color.fromARGB(255, 155, 2, 2),
+                                      ),
+                                    ),
+                                  ),
                                   onPressed: () async {
                                     await FirebaseFirestore.instance
                                         .runTransaction((transaction) async {
-                                      final bookmarkRef = FirebaseFirestore.instance
+                                      final bookmarkRef = FirebaseFirestore
+                                          .instance
                                           .collection('Users')
                                           .doc(currentUser)
                                           .collection('bookmarks')
                                           .doc(name);
 
-                                      final bookmarkDestRef = FirebaseFirestore.instance
+                                      final bookmarkDestRef = FirebaseFirestore
+                                          .instance
                                           .collection('Kaon')
                                           .doc(name);
 

@@ -4,6 +4,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'food_details.dart';
 import 'filter_options.dart';
 import 'food_item.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Food {
   final String name;
@@ -15,7 +16,15 @@ class Food {
   final String vendor;
   final String address;
 
-  Food({required this.name, required this.image, required this.price, required this.bookmarks, required this.category, required this.location, required this.vendor, required this.address});
+  Food(
+      {required this.name,
+      required this.image,
+      required this.price,
+      required this.bookmarks,
+      required this.category,
+      required this.location,
+      required this.vendor,
+      required this.address});
 }
 
 class FoodGridView extends StatefulWidget {
@@ -39,19 +48,19 @@ class _FoodGridViewState extends State<FoodGridView> {
   void fetchData() async {
     List<Food> foods = [];
 
-    QuerySnapshot snapshot = await FirebaseFirestore.instance.collection('Kaon').get();
+    QuerySnapshot snapshot =
+        await FirebaseFirestore.instance.collection('Kaon').get();
 
     snapshot.docs.forEach((doc) {
       foods.add(Food(
-        name: doc['name'],
-        image: doc['image_path'],
-        price: doc['price'],
-        bookmarks: doc['bookmarks'],
-        category: doc['category'],
-        location: doc['location'],
-        vendor: doc['vendor'],
-        address: doc['address']
-      ));
+          name: doc['name'],
+          image: doc['image_path'],
+          price: doc['price'],
+          bookmarks: doc['bookmarks'],
+          category: doc['category'],
+          location: doc['location'],
+          vendor: doc['vendor'],
+          address: doc['address']));
     });
     //initial sort of food items
     foods.sort((a, b) => b.bookmarks.compareTo(a.bookmarks));
@@ -69,7 +78,8 @@ class _FoodGridViewState extends State<FoodGridView> {
               food.name.toLowerCase().contains(query.toLowerCase()) ||
               food.image.toLowerCase().contains(query.toLowerCase()))
           .toList();
-      searchResults.sort((a, b) => b.bookmarks.compareTo(a.bookmarks)); // Sort by bookmarks
+      searchResults.sort(
+          (a, b) => b.bookmarks.compareTo(a.bookmarks)); // Sort by bookmarks
     });
   }
 
@@ -116,9 +126,11 @@ class _FoodGridViewState extends State<FoodGridView> {
                 ),
               ),
               IconButton(
-                icon: Icon(Icons.filter_list, color: Color.fromARGB(255, 155, 2, 2)),
+                icon: Icon(Icons.filter_list,
+                    color: Color.fromARGB(255, 155, 2, 2)),
                 onPressed: () async {
-                  final filters = await FilterOptions.show(context, selectedFilters);
+                  final filters =
+                      await FilterOptions.show(context, selectedFilters);
                   if (filters != null) {
                     updateFilters(filters);
                   }
@@ -133,22 +145,27 @@ class _FoodGridViewState extends State<FoodGridView> {
             alignment: Alignment.centerLeft,
             child: Text(
               'Popular',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
-                fontFamily: 'Poppins',
-                color: Color.fromARGB(255, 155, 2, 2),
+              style: GoogleFonts.poppins(
+                textStyle: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Color.fromARGB(255, 155, 2, 2),
+                ),
               ),
             ),
-           ),
+          ),
         ),
         //
         Wrap(
           spacing: 8.0,
           children: selectedFilters
               .map((filter) => Chip(
-                    backgroundColor: Color.fromARGB(255, 228, 90, 90), // filter colors 
-                    label: Text(filter, style: TextStyle(color: Colors.white),),
+                    backgroundColor:
+                        Color.fromARGB(255, 228, 90, 90), // filter colors
+                    label: Text(
+                      filter,
+                      style: TextStyle(color: Colors.white),
+                    ),
                     onDeleted: () {
                       setState(() {
                         selectedFilters.remove(filter);
@@ -171,7 +188,7 @@ class _FoodGridViewState extends State<FoodGridView> {
             itemBuilder: (context, index) {
               return FoodItem(
                 name: searchResults[index].name,
-                image: searchResults[index].image ,
+                image: searchResults[index].image,
                 price: searchResults[index].price,
                 vendor: searchResults[index].vendor,
                 location: searchResults[index].location,
@@ -185,10 +202,8 @@ class _FoodGridViewState extends State<FoodGridView> {
                         image: searchResults[index].image,
                         price: searchResults[index].price,
                         vendor: searchResults[index].vendor,
-                        location: LatLng(
-                          searchResults[index].location.latitude,
-                          searchResults[index].location.longitude
-                        ),
+                        location: LatLng(searchResults[index].location.latitude,
+                            searchResults[index].location.longitude),
                         address: searchResults[index].address,
                       ),
                     ),
@@ -225,7 +240,8 @@ class _SearchBarState extends State<SearchBar> {
             child: TextField(
               onChanged: widget.onQueryChanged,
               decoration: InputDecoration(
-                prefixIcon: Icon(Icons.search, color: Color.fromARGB(255, 155, 2, 2)),
+                prefixIcon:
+                    Icon(Icons.search, color: Color.fromARGB(255, 155, 2, 2)),
                 hintText: 'What are you craving?',
                 hintStyle: TextStyle(
                   color: Colors.grey.withOpacity(0.5),
@@ -233,7 +249,8 @@ class _SearchBarState extends State<SearchBar> {
                 ),
                 filled: true,
                 fillColor: Colors.white.withOpacity(0.5),
-                contentPadding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 20.0),
+                contentPadding:
+                    EdgeInsets.symmetric(vertical: 15.0, horizontal: 20.0),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(25.0)),
                   borderSide: BorderSide.none,

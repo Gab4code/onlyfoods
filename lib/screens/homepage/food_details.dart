@@ -11,7 +11,12 @@ class FoodDetailPage extends StatelessWidget {
   final String address;
 
   FoodDetailPage(
-      {required this.name, required this.image, required this.price, required this.vendor, required this.location, required this.address});
+      {required this.name,
+      required this.image,
+      required this.price,
+      required this.vendor,
+      required this.location,
+      required this.address});
 
   late Size mediaSize;
 
@@ -23,7 +28,6 @@ class FoodDetailPage extends StatelessWidget {
   void _onMapCreated(GoogleMapController controller) {
     _controller = controller;
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -112,7 +116,8 @@ class FoodDetailPage extends StatelessWidget {
           SizedBox(height: 16),
           Row(
             children: [
-              Icon(Icons.store, size: 30, color: Color.fromARGB(255, 155, 2, 2)),
+              Icon(Icons.store,
+                  size: 25, color: Color.fromARGB(255, 155, 2, 2)),
               SizedBox(width: 5),
               Text(
                 vendor,
@@ -130,29 +135,42 @@ class FoodDetailPage extends StatelessWidget {
           Row(
             children: [
               Icon(Icons.location_on,
-                  size: 30, color: Color.fromARGB(255, 155, 2, 2)),
+                  size: 22, color: Color.fromARGB(255, 155, 2, 2)),
               SizedBox(width: 5),
-              Text(address),
+              Expanded(
+                child: Text(
+                  address,
+                  style: GoogleFonts.poppins(
+                    textStyle: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.black,
+                    ),
+                  ),
+                  softWrap: true,
+                  maxLines: null,
+                ),
+              ),
             ],
           ),
-          SizedBox(height: 5,),
+          SizedBox(
+            height: 5,
+          ),
           Center(
             child: Container(
-              width: 300,
-              height: 200,
-              child: GoogleMap(
-                onMapCreated: _onMapCreated,
-                initialCameraPosition: CameraPosition(
-                  target: location,
-                  zoom: 15
-                ),
-                markers: {
-                  Marker(markerId: MarkerId("_targetLocation"),
-                  icon: BitmapDescriptor.defaultMarker,
-                  position: location
-                  ),
-                },)
-            ),
+                width: 300,
+                height: 200,
+                child: GoogleMap(
+                  onMapCreated: _onMapCreated,
+                  initialCameraPosition:
+                      CameraPosition(target: location, zoom: 15),
+                  markers: {
+                    Marker(
+                        markerId: MarkerId("_targetLocation"),
+                        icon: BitmapDescriptor.defaultMarker,
+                        position: location),
+                  },
+                )),
           ),
         ],
       ),

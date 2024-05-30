@@ -5,6 +5,7 @@ import 'package:onlyfoods/screens/homepage/food_grid_view.dart';
 import 'package:onlyfoods/screens/homepage/bookmark.dart';
 import 'package:onlyfoods/services/auth_page.dart';
 import 'package:onlyfoods/services/wrapper.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class foodPage extends StatefulWidget {
   const foodPage({Key? key}) : super(key: key);
@@ -16,7 +17,6 @@ class foodPage extends StatefulWidget {
 class _foodPageState extends State<foodPage> {
   final currentUser = FirebaseAuth.instance.currentUser!;
   final AuthService _auth = AuthService();
-
 
   int _selectedIndex = 0;
 
@@ -31,7 +31,13 @@ class _foodPageState extends State<foodPage> {
       appBar: AppBar(
         title: Text(
           'OnlyFoods',
-          style: TextStyle(color: Color.fromARGB(255, 155, 2, 2), fontFamily: 'Poppins', fontWeight: FontWeight.bold),
+          style: GoogleFonts.poppins(
+            textStyle: TextStyle(
+              //fontSize: 24,
+              fontWeight: FontWeight.w600,
+              color: Color.fromARGB(255, 155, 2, 2),
+            ),
+          ),
         ),
         backgroundColor: Colors.white,
         iconTheme: IconThemeData(color: Color.fromARGB(255, 155, 2, 2)),
@@ -39,9 +45,9 @@ class _foodPageState extends State<foodPage> {
       drawer: Drawer(
         child: StreamBuilder<DocumentSnapshot>(
           stream: FirebaseFirestore.instance
-            .collection('Users')
-            .doc(currentUser.email)
-            .snapshots(),
+              .collection('Users')
+              .doc(currentUser.email)
+              .snapshots(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return CircularProgressIndicator();
@@ -69,13 +75,19 @@ class _foodPageState extends State<foodPage> {
                   ),
                   ListTile(
                     leading: Icon(Icons.logout),
-                    title:
-                        Text('Logout', style: TextStyle(fontFamily: 'Poppins')),
+                    title: Text(
+                      'Logout',
+                      style: GoogleFonts.poppins(
+                        textStyle: TextStyle(
+                          color: Color.fromARGB(255, 101, 91, 91),
+                        ),
+                      ),
+                    ),
                     onTap: () async {
                       // Handle logout tap here
-                       await _auth.signOut();
-                       Navigator.push(context, MaterialPageRoute(builder: (context) => Wrapper()));
-                       
+                      await _auth.signOut();
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => Wrapper()));
                     },
                   ),
                 ],
