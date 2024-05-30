@@ -71,6 +71,7 @@ flutter:
   assets:
     - lib/images/logo.png
     - lib/images/Logo_white.png
+    - lib/images/auth.jpg
     - google_fonts/
 
   # To add assets to your application, add an assets section, like this:

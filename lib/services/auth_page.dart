@@ -123,7 +123,6 @@ class AuthService {
       String email,
       String username,
       String password,
-      //String bday,
       // String fcolor,
       Function(String)? errorCallback) async {
     try {
