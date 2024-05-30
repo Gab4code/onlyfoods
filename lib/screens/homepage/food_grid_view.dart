@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'food_details.dart';
 import 'filter_options.dart';
 import 'food_item.dart';
@@ -10,8 +11,11 @@ class Food {
   final String price;
   final int bookmarks;
   final String category;
+  final GeoPoint location;
+  final String vendor;
+  final String address;
 
-  Food({required this.name, required this.image, required this.price, required this.bookmarks, required this.category});
+  Food({required this.name, required this.image, required this.price, required this.bookmarks, required this.category, required this.location, required this.vendor, required this.address});
 }
 
 class FoodGridView extends StatefulWidget {
@@ -43,7 +47,10 @@ class _FoodGridViewState extends State<FoodGridView> {
         image: doc['image_path'],
         price: doc['price'],
         bookmarks: doc['bookmarks'],
-        category: doc['category']
+        category: doc['category'],
+        location: doc['location'],
+        vendor: doc['vendor'],
+        address: doc['address']
       ));
     });
     //initial sort of food items
@@ -166,6 +173,9 @@ class _FoodGridViewState extends State<FoodGridView> {
                 name: searchResults[index].name,
                 image: searchResults[index].image ,
                 price: searchResults[index].price,
+                vendor: searchResults[index].vendor,
+                location: searchResults[index].location,
+                address: searchResults[index].address,
                 onTap: () {
                   Navigator.push(
                     context,
@@ -174,6 +184,12 @@ class _FoodGridViewState extends State<FoodGridView> {
                         name: searchResults[index].name,
                         image: searchResults[index].image,
                         price: searchResults[index].price,
+                        vendor: searchResults[index].vendor,
+                        location: LatLng(
+                          searchResults[index].location.latitude,
+                          searchResults[index].location.longitude
+                        ),
+                        address: searchResults[index].address,
                       ),
                     ),
                   );

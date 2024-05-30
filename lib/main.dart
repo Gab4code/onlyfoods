@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:onlyfoods/screens/homepage/home_page.dart';
+import 'package:onlyfoods/test_team_files/map_page.dart';
 import 'package:onlyfoods/screens/login_page.dart';
 import 'package:onlyfoods/screens/register_page.dart';
 import 'package:onlyfoods/services/wrapper.dart';
@@ -16,7 +17,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Onboarding(),
+      home: 
+      // MapPage()
+      Onboarding(),
     );
   }
 }
