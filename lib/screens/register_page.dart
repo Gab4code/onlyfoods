@@ -328,11 +328,11 @@ class _registrationState extends State<Register> {
                       builder: (context) => homePage(),
                     ));
 
-                if (result == null) {
-                  setState(() {
-                    error = _errorMessage!;
-                  });
-                }
+                // if (result == null) {
+                //   setState(() {
+                //     error = _errorMessage!;
+                //   });
+                // }
               }
             },
           ),
