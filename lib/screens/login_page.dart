@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:onlyfoods/screens/homepage/home_page.dart';
 import 'package:onlyfoods/screens/register_page.dart';
 import 'package:onlyfoods/services/auth_page.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class loginPage extends StatefulWidget {
   final Function toggleView;
@@ -99,15 +100,22 @@ class _LoginPageState extends State<loginPage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
+        Text(
           "Welcome",
-          style: TextStyle(
-              color: Color(0xFFDF0000), fontSize: 40, fontWeight: FontWeight.bold),
+          style: GoogleFonts.poppins(
+            textStyle: TextStyle(
+          fontSize: 40,
+          fontWeight: FontWeight.bold,
+          color: Color.fromARGB(255, 155, 2, 2),
+        )),
         ),
         Text("Please sign in with your information",
-          style: TextStyle(
-              color: Colors.black,
-        ),
+          style: GoogleFonts.poppins(
+            textStyle: TextStyle(
+          fontSize: 13,
+          fontWeight: FontWeight.normal,
+          color: Colors.black,
+        )),
         ),
         const SizedBox(height: 25),
         Padding(
@@ -118,20 +126,21 @@ class _LoginPageState extends State<loginPage> {
               labelText: 'Email',
               hintText: 'Enter your Email',
               labelStyle: TextStyle(color: Color(0xFF595959)),
-              prefixIcon: Icon(Icons.email, color: Color(0xFFDF0000)),
+              prefixIcon: Icon(Icons.email, color: Color.fromARGB(255, 155, 2, 2)),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(25),
               ),
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(25),
-                borderSide: BorderSide(color: Color(0xFFDF0000)),
+                borderSide: BorderSide(color: Color.fromARGB(255, 155, 2, 2)),
               ),
             ),
-              style: const TextStyle(
-                fontSize: 12,
-                color: Color.fromARGB(255, 57, 57, 57),
-                  fontFamily: 'Poppins',
-                  ),
+              style: GoogleFonts.poppins(
+                textStyle: TextStyle(
+              fontSize: 10,
+              fontWeight: FontWeight.normal,
+              color: Color.fromARGB(255, 57, 57, 57),
+            )),
               validator: (val) => val!.isEmpty ? 'Enter an Email' : null,
                   onChanged: (val) {
                       setState(() => email = val);
@@ -146,10 +155,10 @@ class _LoginPageState extends State<loginPage> {
               labelText: 'Password',
               hintText: 'Enter your Password',
               labelStyle: TextStyle(color: Color(0xFF595959)),
-              prefixIcon: Icon(Icons.lock, color: Color(0xFFDF0000)),
+              prefixIcon: Icon(Icons.lock, color: Color.fromARGB(255, 155, 2, 2)),
               suffixIcon: IconButton(
                 icon: Icon(
-                  _isObscure ? Icons.visibility : Icons.visibility_off,
+                  _isObscure ? Icons.visibility_off : Icons.visibility,
                   color: Color.fromARGB(255, 155, 155, 155),
                 ),
                 onPressed: () {
@@ -158,19 +167,22 @@ class _LoginPageState extends State<loginPage> {
                   });
                 },
               ),
+              
               border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(25),                      
                   ),
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(25),
-                borderSide: BorderSide(color: Color(0xFFDF0000)),
+                borderSide: BorderSide(color: Color.fromARGB(255, 155, 2, 2)),
                 ),
               ),
-              style: const TextStyle(
-                  fontSize: 12,
-                  color: Color.fromARGB(255, 57, 57, 57),
-                  fontFamily: 'Poppins',
-                ),
+              style: GoogleFonts.poppins(
+                textStyle: TextStyle(
+              fontSize: 10,
+              fontWeight: FontWeight.normal,
+              color: Color.fromARGB(255, 57, 57, 57),
+            )),
+                obscureText: _isObscure,
               validator: (val) => val!.length < 6 ? 'Enter a Password with 6+ Chars long' : null,
                   onChanged: (val) {
                       setState(() => password = val);
@@ -199,7 +211,7 @@ class _LoginPageState extends State<loginPage> {
                       }
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xFFDF0000),
+                      backgroundColor: Color.fromARGB(255, 155, 2, 2),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20.0),
                         
@@ -243,7 +255,7 @@ class _LoginPageState extends State<loginPage> {
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 15,
-                          color: Color.fromARGB(255, 240, 41, 6),
+                          color: Color.fromARGB(255, 155, 2, 2),
                         ),
                       ),
                     ),

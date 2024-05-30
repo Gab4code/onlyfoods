@@ -109,7 +109,8 @@ class FoodDetailPage extends StatelessWidget {
                   fontSize: 25,
                   fontWeight: FontWeight.w500,
                   color: Color.fromARGB(255, 155, 2, 2),
-                )),
+                )
+                ),
               ),
             ],
           ),
