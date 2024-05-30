@@ -138,30 +138,29 @@ class BookmarkedFoods extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-                                  onPressed: () async {
-                                    await FirebaseFirestore.instance
-                                        .runTransaction((transaction) async {
-                                      final bookmarkRef = FirebaseFirestore
-                                          .instance
-                                          .collection('Users')
-                                          .doc(currentUser)
-                                          .collection('bookmarks')
-                                          .doc(name);
+                                    onPressed: () async {
+  final documentId = bookmark.id; // Assuming bookmark is the document snapshot
 
-                                      final bookmarkDestRef = FirebaseFirestore
-                                          .instance
-                                          .collection('Kaon')
-                                          .doc(name);
+  await FirebaseFirestore.instance.runTransaction((transaction) async {
+    final bookmarkRef = FirebaseFirestore.instance
+        .collection('Users')
+        .doc(currentUser)
+        .collection('bookmarks')
+        .doc(documentId);
 
-                                      transaction.delete(bookmarkRef);
+    final bookmarkDestRef = FirebaseFirestore.instance
+        .collection('Kaon')
+        .doc(documentId);
 
-                                      transaction.update(bookmarkDestRef, {
-                                        'bookmarks': FieldValue.increment(-1),
-                                      });
-                                    });
+    transaction.delete(bookmarkRef);
 
-                                    Navigator.of(context).pop();
-                                  },
+    transaction.update(bookmarkDestRef, {
+      'bookmarks': FieldValue.increment(-1),
+    });
+  });
+
+  Navigator.pop(context);
+}
                                 ),
                               ],
                             ),
