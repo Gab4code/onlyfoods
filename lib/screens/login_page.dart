@@ -30,7 +30,7 @@ class _LoginPageState extends State<loginPage> {
     return Container(
       decoration:BoxDecoration(
         image:DecorationImage( 
-          image:NetworkImage('https://i.pinimg.com/564x/21/45/ac/2145ac8af61a4b9f8144823d104da4ae.jpg'),
+          image:AssetImage('lib/images/auth.jpg'),
           fit:BoxFit.cover,
           colorFilter: ColorFilter.mode(
             Colors.black.withOpacity(0.2), 
