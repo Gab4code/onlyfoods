@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:onlyfoods/screens/homepage/food_details.dart';
 
 class BookmarkedFoods extends StatelessWidget {
@@ -32,6 +33,9 @@ class BookmarkedFoods extends StatelessWidget {
             final name = bookmark['name'];
             final price = bookmark['price'];
             final image = bookmark['image'];
+            final vendor = bookmark['vendor'];
+            final location = bookmark['location'];
+            final address = bookmark['address'];
 
             return GestureDetector(
               onTap: () {
@@ -43,6 +47,12 @@ class BookmarkedFoods extends StatelessWidget {
                       name: name,
                       price: price,
                       image: image,
+                      vendor: vendor,
+                      location: LatLng(
+                        location.latitude,
+                        location.longitude
+                      ),
+                      address: address,
                       // add other necessary fields
                     ),
                   ),
