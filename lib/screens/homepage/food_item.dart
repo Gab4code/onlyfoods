@@ -77,7 +77,8 @@ class _FoodItemState extends State<FoodItem> {
             'image':widget.image,
             'price':widget.price,
             'vendor':widget.vendor,
-            'location':widget.location
+            'location':widget.location,
+            'address':widget.address
             
           }
         );
