@@ -16,24 +16,6 @@ class homePage extends StatefulWidget {
 
 class _homePageState extends State<homePage> {
   final currentUser = FirebaseAuth.instance.currentUser!;
-  String imageUrl = '';
-  File? _pickedImage;
-
-
-
-  Color getColorFromName(String colorName) {
-  switch (colorName.toLowerCase()) {
-    case 'blue':
-      return Colors.blue;
-    case 'red':
-      return Colors.red;
-    case 'green':
-      return Colors.green;
-    
-    default:
-      return Colors.transparent; // Return a default color if the name is not recognized
-  }
-}
   
   @override
   Widget build(BuildContext context) {

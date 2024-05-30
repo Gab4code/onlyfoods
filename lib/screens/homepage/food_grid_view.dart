@@ -15,6 +15,7 @@ class Food {
   final GeoPoint location;
   final String vendor;
   final String address;
+  final String uid;
 
   Food(
       {required this.name,
@@ -24,7 +25,8 @@ class Food {
       required this.category,
       required this.location,
       required this.vendor,
-      required this.address});
+      required this.address,
+      required this.uid});
 }
 
 class FoodGridView extends StatefulWidget {
@@ -60,7 +62,8 @@ class _FoodGridViewState extends State<FoodGridView> {
           category: doc['category'],
           location: doc['location'],
           vendor: doc['vendor'],
-          address: doc['address']));
+          address: doc['address'],
+          uid: doc['uid']));
     });
     //initial sort of food items
     foods.sort((a, b) => b.bookmarks.compareTo(a.bookmarks));
@@ -193,6 +196,7 @@ class _FoodGridViewState extends State<FoodGridView> {
                 vendor: searchResults[index].vendor,
                 location: searchResults[index].location,
                 address: searchResults[index].address,
+                uid: searchResults[index].uid,
                 onTap: () {
                   Navigator.push(
                     context,

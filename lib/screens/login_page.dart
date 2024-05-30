@@ -137,7 +137,7 @@ class _LoginPageState extends State<loginPage> {
             ),
               style: GoogleFonts.poppins(
                 textStyle: TextStyle(
-              fontSize: 10,
+              fontSize: 15,
               fontWeight: FontWeight.normal,
               color: Color.fromARGB(255, 57, 57, 57),
             )),
@@ -178,7 +178,7 @@ class _LoginPageState extends State<loginPage> {
               ),
               style: GoogleFonts.poppins(
                 textStyle: TextStyle(
-              fontSize: 10,
+              fontSize: 15,
               fontWeight: FontWeight.normal,
               color: Color.fromARGB(255, 57, 57, 57),
             )),
