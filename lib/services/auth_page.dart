@@ -124,7 +124,7 @@ class AuthService {
       String username,
       String password,
       String bday,
-      String fcolor,
+      // String fcolor,
       Function(String)? errorCallback) async {
     try {
       UserCredential result = await _auth.createUserWithEmailAndPassword(
@@ -137,7 +137,7 @@ class AuthService {
           .set({
         'username': username, // initial user
         'birthdate': bday,
-        'fcolor': fcolor,
+        // 'fcolor': fcolor,
         'email': email
         //add more fields
       });
