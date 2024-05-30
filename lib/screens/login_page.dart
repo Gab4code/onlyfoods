@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:onlyfoods/screens/homepage/home_page.dart';
 import 'package:onlyfoods/screens/register_page.dart';
 import 'package:onlyfoods/services/auth_page.dart';
+import 'package:onlyfoods/services/wrapper.dart';
 
 class loginPage extends StatefulWidget {
   final Function toggleView;
@@ -191,11 +192,13 @@ class _LoginPageState extends State<loginPage> {
                           email,
                           password,
                         );
-                        Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => homePage(),));
                         if (result == null) {
+                          
                           setState(() => error = 'credentials are not valid.');
                         }
+                        Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => homePage(),));
+                        
                       }
                     },
                     style: ElevatedButton.styleFrom(

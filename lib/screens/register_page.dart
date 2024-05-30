@@ -25,7 +25,7 @@ class _registrationState extends State<Register> {
   String confirmPassword = '';
   String username = '';
   String error = '';
-  String bday = '';
+  //String bday = '';
   
   TextEditingController dateInput = TextEditingController();
 
@@ -294,41 +294,41 @@ Widget _buildBottom() {
                   obscureText: true,
               ),
             ),
-            Padding(
-              padding:
-                const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-                child: TextField(
-                style: TextStyle(color: Colors.black),
-                 controller: dateInput,
-                  decoration: InputDecoration(
-                      labelText: "Enter Birthdate",
-                      labelStyle: TextStyle(color: Color(0xFF595959)),
-                      prefixIcon: Icon(Icons.calendar_today, color: Color(0xFFDF0000)),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(25),
-                        borderSide: BorderSide(color: Color(0xFFDF0000)),
-                        ),
-                  ),
-                      readOnly: true,
-                      onTap: () async {
-                        DateTime? pickedDate = await showDatePicker(
-                          context: context,
-                          initialDate: DateTime.now(),
-                          firstDate: DateTime(1950),
-                          lastDate: DateTime(2100),
-                        );
+            // Padding(
+            //   padding:
+            //     const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+            //     child: TextField(
+            //     style: TextStyle(color: Colors.black),
+            //      controller: dateInput,
+            //       decoration: InputDecoration(
+            //           labelText: "Enter Birthdate",
+            //           labelStyle: TextStyle(color: Color(0xFF595959)),
+            //           prefixIcon: Icon(Icons.calendar_today, color: Color(0xFFDF0000)),
+            //           focusedBorder: OutlineInputBorder(
+            //             borderRadius: BorderRadius.circular(25),
+            //             borderSide: BorderSide(color: Color(0xFFDF0000)),
+            //             ),
+            //       ),
+            //           readOnly: true,
+            //           onTap: () async {
+            //             DateTime? pickedDate = await showDatePicker(
+            //               context: context,
+            //               initialDate: DateTime.now(),
+            //               firstDate: DateTime(1950),
+            //               lastDate: DateTime(2100),
+            //             );
         
-                        if (pickedDate != null) {
-                          String formattedDate =
-                              DateFormat('yyyy-MM-dd').format(pickedDate);
-                          setState(() {
-                            dateInput.text = formattedDate;
-                            bday = formattedDate;
-                          });
-                        }
-                      },
-                    ),
-            ),
+            //             if (pickedDate != null) {
+            //               String formattedDate =
+            //                   DateFormat('yyyy-MM-dd').format(pickedDate);
+            //               setState(() {
+            //                 dateInput.text = formattedDate;
+            //                 bday = formattedDate;
+            //               });
+            //             }
+            //           },
+            //         ),
+            // ),
             SizedBox(height: 10.0),
             Padding(
               padding: EdgeInsets.only(left: 15),
@@ -346,7 +346,7 @@ Widget _buildBottom() {
                           email,
                           username,
                           confirmPassword,
-                          bday,
+                          //bday,
                         _handleRegisterError,
                       );
                       print('Register Successful');

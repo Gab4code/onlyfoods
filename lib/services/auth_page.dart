@@ -123,7 +123,7 @@ class AuthService {
       String email,
       String username,
       String password,
-      String bday,
+      //String bday,
       // String fcolor,
       Function(String)? errorCallback) async {
     try {
@@ -136,7 +136,7 @@ class AuthService {
           .doc(result.user!.email)
           .set({
         'username': username, // initial user
-        'birthdate': bday,
+        //'birthdate': bday,
         // 'fcolor': fcolor,
         'email': email
         //add more fields
