@@ -12,10 +12,19 @@ class FoodItem extends StatefulWidget {
   final String vendor;
   final GeoPoint location;
   final String address;
+  final String uid;
   final VoidCallback onTap;
-  
 
-  FoodItem({required this.name, required this.image, required this.price, required this.onTap, required this.vendor, required this.location, required this.address});
+  FoodItem({
+    required this.name,
+    required this.image,
+    required this.price,
+    required this.onTap,
+    required this.vendor,
+    required this.location,
+    required this.address,
+    required this.uid,
+  });
 
   @override
   _FoodItemState createState() => _FoodItemState();
@@ -23,78 +32,107 @@ class FoodItem extends StatefulWidget {
 
 class _FoodItemState extends State<FoodItem> {
   bool isBookmarked = false;
+  String? documentId;
 
-   @override
+  @override
   void initState() {
     super.initState();
-    _checkBookmarkStatus();
+    _initializeBookmark();
   }
 
+  void _initializeBookmark() async {
+    final docId = await _getDocumentIdByUid(widget.uid);
+    if (docId != null) {
+      setState(() {
+        documentId = docId;
+      });
+      _checkBookmarkStatus(docId);
+    }
+  }
 
-  void _checkBookmarkStatus() async {
+  Future<String?> _getDocumentIdByUid(String uid) async {
+  final querySnapshot = await FirebaseFirestore.instance
+      .collection('Kaon')
+      .where('uid', isEqualTo: uid)
+      .limit(1)
+      .get();
+  if (querySnapshot.docs.isNotEmpty) {
+    return querySnapshot.docs.first.id;
+  }
+  return null;
+}
+
+  void _checkBookmarkStatus(String docId) async {
     final user = FirebaseAuth.instance.currentUser!.email;
     final doc = await FirebaseFirestore.instance
-      .collection('Users')
-      .doc(user)
-      .collection('bookmarks')
-      .doc(widget.name)
-      .get();
-    setState(() {
-      isBookmarked = doc.exists;
-    });
+        .collection('Users')
+        .doc(user)
+        .collection('bookmarks')
+        .doc(docId)
+        .get();
+     if (doc.exists) {
+      // Check if the uid in the document matches
+      final bookmarkData = doc.data();
+      if (bookmarkData != null && bookmarkData['uid'] == widget.uid) {
+        setState(() {
+          isBookmarked = true;
+        });
+      } else {
+        setState(() {
+          isBookmarked = false;
+        });
+      }
+    } else {
+      setState(() {
+        isBookmarked = false;
+      });
+    }
   }
 
-
   void toggleBookmark() async {
+    if (documentId == null) return;
+
     final user = FirebaseAuth.instance.currentUser!.email;
 
     final bookmarkDest = FirebaseFirestore.instance
-      .collection('Kaon')
-      .doc(widget.name);
-
-
+        .collection('Kaon')
+        .doc(documentId);
 
     final bookmarkRef = FirebaseFirestore.instance
-      .collection('Users')
-      .doc(user)
-      .collection('bookmarks')
-      .doc(widget.name);
+        .collection('Users')
+        .doc(user)
+        .collection('bookmarks')
+        .doc(documentId);
 
-      final batch = FirebaseFirestore.instance.batch();
+    final batch = FirebaseFirestore.instance.batch();
 
-
-      if(isBookmarked) {
-        //FROM BOOKMARKED - NON-BOOKMARKED
-        batch.delete(bookmarkRef);
-        batch.update(bookmarkDest, {
+    if (isBookmarked) {
+      // FROM BOOKMARKED - NON-BOOKMARKED
+      batch.delete(bookmarkRef);
+      batch.update(bookmarkDest, {
         'bookmarks': FieldValue.increment(-1),
       });
-      }
-      else {
-        //FROM NON-BOOKMARKED - BOOKMARKED
-        batch.set(bookmarkRef, 
-          {
-            'name':widget.name,
-            'image':widget.image,
-            'price':widget.price,
-            'vendor':widget.vendor,
-            'location':widget.location,
-            'address':widget.address
-            
-          }
-        );
-        batch.update(bookmarkDest, {
-          'bookmarks': FieldValue.increment(1),
-        });
-      }
+    } else {
+      // FROM NON-BOOKMARKED - BOOKMARKED
+      batch.set(bookmarkRef, {
+        'name': widget.name,
+        'image': widget.image,
+        'price': widget.price,
+        'vendor': widget.vendor,
+        'location': widget.location,
+        'address': widget.address,
+        'uid':widget.uid
+      });
+      batch.update(bookmarkDest, {
+        'bookmarks': FieldValue.increment(1),
+      });
+    }
 
-      await batch.commit();
-
+    await batch.commit();
 
     setState(() {
       isBookmarked = !isBookmarked;
     });
-    // Optionally, handle other bookmark-related logic here, like updating a database
   }
 
   @override
@@ -113,7 +151,7 @@ class _FoodItemState extends State<FoodItem> {
               borderRadius: BorderRadius.vertical(top: Radius.circular(15)),
               child: Image.network(
                 widget.image,
-                fit: BoxFit.cover, 
+                fit: BoxFit.cover,
                 height: 120,
                 width: double.infinity,
                 errorBuilder: (context, error, stackTrace) {
@@ -127,25 +165,29 @@ class _FoodItemState extends State<FoodItem> {
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Text(widget.name, 
-              style: GoogleFonts.poppins(
-                textStyle: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
+              child: Text(
+                widget.name,
+                style: GoogleFonts.poppins(
+                  textStyle: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
                 ),
-              ),),
+              ),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: Text(widget.price, 
-              style: GoogleFonts.poppins(
-                textStyle: TextStyle(
-                  //fontSize: 16,
-                  fontWeight: FontWeight.w500,
-                  color: const Color.fromARGB(255, 219, 218, 218),
+              child: Text(
+                widget.price,
+                style: GoogleFonts.poppins(
+                  textStyle: TextStyle(
+                    //fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    color: const Color.fromARGB(255, 219, 218, 218),
+                  ),
                 ),
-              ),),
+              ),
             ),
             Spacer(),
             Padding(
