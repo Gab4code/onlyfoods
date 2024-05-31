@@ -25,7 +25,7 @@ class _registrationState extends State<Register> {
   String password = '';
   String confirmPassword = '';
   String username = '';
-  String error = '';
+  // String error = '';
   //String bday = '';
 
   TextEditingController dateInput = TextEditingController();
@@ -225,7 +225,7 @@ class _registrationState extends State<Register> {
             ),
             suffixIcon: IconButton(
               icon: Icon(
-                _isObscure ? Icons.visibility : Icons.visibility_off,
+                _isObscure ? Icons.visibility_off : Icons.visibility,
                 color: Color.fromARGB(255, 155, 155, 155),
               ),
               onPressed: () {
@@ -269,7 +269,7 @@ class _registrationState extends State<Register> {
             ),
             suffixIcon: IconButton(
               icon: Icon(
-                _isObscure1 ? Icons.visibility : Icons.visibility_off,
+                _isObscure1 ? Icons.visibility_off : Icons.visibility,
                 color: Color.fromARGB(255, 155, 155, 155),
               ),
               onPressed: () {
